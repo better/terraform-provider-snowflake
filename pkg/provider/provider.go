@@ -326,6 +326,12 @@ func DSN(
 		Role:    role,
 	}
 
+	// If host is set trust it and do not use the region value
+	if host != "" {
+		config.Region = ""
+		config.Host = host
+	}
+
 	if privateKeyPath != "" {
 		privateKeyBytes, err := ReadPrivateKeyFile(privateKeyPath)
 		if err != nil {
@@ -353,10 +359,6 @@ func DSN(
 		config.Password = password
 	} else {
 		return "", errors.New("no authentication method provided")
-	}
-	
-	if host != "" {
-		config.Host = host
 	}
 
 	return gosnowflake.DSN(&config)
