@@ -6,7 +6,7 @@ import (
 	"log"
 
 	"github.com/chanzuckerberg/go-misc/ver"
-	"github.com/chanzuckerberg/terraform-provider-snowflake/pkg/provider"
+	"github.com/better/terraform-provider-snowflake/pkg/provider"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/plugin"
 )
 

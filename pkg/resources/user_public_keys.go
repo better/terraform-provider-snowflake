@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/chanzuckerberg/go-misc/sets"
-	"github.com/chanzuckerberg/terraform-provider-snowflake/pkg/snowflake"
+	"github.com/better/terraform-provider-snowflake/pkg/snowflake"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 

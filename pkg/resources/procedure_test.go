@@ -5,11 +5,11 @@ import (
 	"testing"
 
 	sqlmock "github.com/DATA-DOG/go-sqlmock"
-	"github.com/chanzuckerberg/terraform-provider-snowflake/pkg/provider"
-	"github.com/chanzuckerberg/terraform-provider-snowflake/pkg/resources"
+	"github.com/better/terraform-provider-snowflake/pkg/provider"
+	"github.com/better/terraform-provider-snowflake/pkg/resources"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-	. "github.com/chanzuckerberg/terraform-provider-snowflake/pkg/testhelpers"
+	. "github.com/better/terraform-provider-snowflake/pkg/testhelpers"
 	"github.com/stretchr/testify/require"
 )
 

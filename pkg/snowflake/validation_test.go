@@ -3,7 +3,7 @@ package snowflake_test
 import (
 	"testing"
 
-	"github.com/chanzuckerberg/terraform-provider-snowflake/pkg/snowflake"
+	"github.com/better/terraform-provider-snowflake/pkg/snowflake"
 )
 
 // TODO write a test for a candidate that's not castable to a string

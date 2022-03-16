@@ -6,8 +6,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/chanzuckerberg/terraform-provider-snowflake/pkg/snowflake"
-	snowflakeValidation "github.com/chanzuckerberg/terraform-provider-snowflake/pkg/validation"
+	"github.com/better/terraform-provider-snowflake/pkg/snowflake"
+	snowflakeValidation "github.com/better/terraform-provider-snowflake/pkg/validation"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
