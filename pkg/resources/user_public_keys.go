@@ -6,8 +6,8 @@ import (
 	"log"
 	"strings"
 
-	"github.com/chanzuckerberg/go-misc/sets"
 	"github.com/better/terraform-provider-snowflake/pkg/snowflake"
+	"github.com/chanzuckerberg/go-misc/sets"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 

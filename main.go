@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/chanzuckerberg/go-misc/ver"
 	"github.com/better/terraform-provider-snowflake/pkg/provider"
+	"github.com/chanzuckerberg/go-misc/ver"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/plugin"
 )
 
