@@ -138,7 +138,7 @@ func Provider() *schema.Provider {
 				DefaultFunc: schema.EnvDefaultFunc("SNOWFLAKE_HOST", nil),
 			},
 			"port": {
-				Type:        schema.TypeString,
+				Type:        schema.TypeInt,
 				Description: "Support custom port values to snowflake go driver for use with privatelink",
 				Optional:    true,
 				DefaultFunc: schema.EnvDefaultFunc("SNOWFLAKE_PORT", 443),
@@ -278,7 +278,7 @@ func ConfigureProvider(s *schema.ResourceData) (interface{}, error) {
 	oauthEndpoint := s.Get("oauth_endpoint").(string)
 	oauthRedirectURL := s.Get("oauth_redirect_url").(string)
 	host := s.Get("host").(string)
-	port := s.Get("port").(string)
+	port := s.Get("port").(int)
 	protocol := s.Get("protocol").(string)
 
 	if oauthRefreshToken != "" {
@@ -328,7 +328,7 @@ func DSN(
 	region,
 	role,
 	host string,
-	port string,
+	port int,
 	protocol string,
 ) (string, error) {
 
