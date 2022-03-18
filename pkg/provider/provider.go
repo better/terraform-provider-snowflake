@@ -137,6 +137,18 @@ func Provider() *schema.Provider {
 				Optional:    true,
 				DefaultFunc: schema.EnvDefaultFunc("SNOWFLAKE_HOST", nil),
 			},
+			"port": {
+				Type:        schema.TypeString,
+				Description: "Support custom port values to snowflake go driver for use with privatelink",
+				Optional:    true,
+				DefaultFunc: schema.EnvDefaultFunc("SNOWFLAKE_PORT", 443),
+			},
+			"protocol": {
+				Type:        schema.TypeString,
+				Description: "Support custom protocols to snowflake go driver",
+				Optional:    true,
+				DefaultFunc: schema.EnvDefaultFunc("SNOWFLAKE_PROTOCOL", "https"),
+			},
 		},
 		ResourcesMap:   getResources(),
 		DataSourcesMap: getDataSources(),
@@ -266,6 +278,8 @@ func ConfigureProvider(s *schema.ResourceData) (interface{}, error) {
 	oauthEndpoint := s.Get("oauth_endpoint").(string)
 	oauthRedirectURL := s.Get("oauth_redirect_url").(string)
 	host := s.Get("host").(string)
+	port := s.Get("port").(string)
+	protocol := s.Get("protocol").(string)
 
 	if oauthRefreshToken != "" {
 		accessToken, err := GetOauthAccessToken(oauthEndpoint, oauthClientID, oauthClientSecret, GetOauthData(oauthRefreshToken, oauthRedirectURL))
@@ -287,6 +301,8 @@ func ConfigureProvider(s *schema.ResourceData) (interface{}, error) {
 		region,
 		role,
 		host,
+		port,
+		protocol,
 	)
 	if err != nil {
 		return nil, errors.Wrap(err, "could not build dsn for snowflake connection")
@@ -311,7 +327,10 @@ func DSN(
 	oauthAccessToken,
 	region,
 	role,
-	host string) (string, error) {
+	host string,
+	port string,
+	protocol string,
+) (string, error) {
 
 	// us-west-2 is their default region, but if you actually specify that it won't trigger their default code
 	//  https://github.com/snowflakedb/gosnowflake/blob/52137ce8c32eaf93b0bd22fc5c7297beff339812/dsn.go#L61
@@ -320,10 +339,12 @@ func DSN(
 	}
 
 	config := gosnowflake.Config{
-		Account: account,
-		User:    user,
-		Region:  region,
-		Role:    role,
+		Account:  account,
+		User:     user,
+		Region:   region,
+		Role:     role,
+		Port:     port,
+		Protocol: protocol,
 	}
 
 	// If host is set trust it and do not use the region value
