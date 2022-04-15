@@ -27,6 +27,9 @@ var validAccountPrivileges = NewPrivilegeSet(
 	privilegeMonitorExecution,
 	privilegeOverrideShareRestrictions,
 	privilegeExecuteManagedTask,
+	privilegeOrganizationSupportCases,
+	privilegeAccountSupportCases,
+	privilegeUserSupportCases,
 )
 
 var accountGrantSchema = map[string]*schema.Schema{
@@ -49,6 +52,12 @@ var accountGrantSchema = map[string]*schema.Schema{
 		Description: "When this is set to true, allows the recipient role to grant the privileges to other roles.",
 		Default:     false,
 		ForceNew:    true,
+	},
+	"enable_multiple_grants": {
+		Type:        schema.TypeBool,
+		Optional:    true,
+		Description: "When this is set to true, multiple grants of the same type can be created. This will cause Terraform to not revoke grants applied to roles and objects outside Terraform.",
+		Default:     false,
 	},
 }
 
